@@ -14,7 +14,6 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::update()
 {
-		this->render();
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		    this->window->close();
 
@@ -25,9 +24,4 @@ void MainMenuState::render()
 	this->window->clear();
 	this->window->draw(this->backGround);
 	this->window->display();
-}
-
-void MainMenuState::changeState(std::stack<State*>* states)
-{
-	states->push(new GameState());
 }

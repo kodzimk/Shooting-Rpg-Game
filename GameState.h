@@ -14,6 +14,5 @@ public:
 	//Functions
 	void update();
 	void render();
-	void changeState(std::stack<State*>* states);
 };
 

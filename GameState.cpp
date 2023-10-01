@@ -11,18 +11,11 @@ GameState::~GameState()
 
 void GameState::update()
 {
-	while(this->window->isOpen())
-	{
-		this->render();
-	}
+
 }
 
 void GameState::render()
 {
 }
 
-void GameState::changeState(std::stack<State*>* states)
-{
-
-}
 
