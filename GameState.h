@@ -12,7 +12,7 @@ public:
 
 
 	//Functions
-	void update();
+	void update(std::stack<State*>& states);
 	void render();
 };
 

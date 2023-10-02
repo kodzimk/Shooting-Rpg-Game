@@ -7,14 +7,26 @@ class MainMenuState:public State
 {
 public:
 	//Variables
-	sf::RectangleShape backGround;
+	sf::Sprite backGround;
+	sf::Texture backTexture;
+	sf::RectangleShape shape;
+	sf::Vector2f mousePosView;
+
+	sf::Font font;
+
+	sf::Text playText;
+	sf::Text quitText;
+
+
+	void initTexts();
 
 	MainMenuState();
 	~MainMenuState();
 
 	//Functions
-	void update();
+	void update(std::stack<State*>& states);
 	void render();
-	void changeState(std::stack<State*>* states);
+	void changeState(std::stack<State*>& states, bool isQuit);
+	void updateInputs(std::stack<State*>& states);
 };
 

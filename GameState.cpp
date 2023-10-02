@@ -9,7 +9,7 @@ GameState::~GameState()
 {
 }
 
-void GameState::update()
+void GameState::update(std::stack<State*>& states)
 {
 
 }
