@@ -1,5 +1,6 @@
 #pragma once
 #include"stdfah.h"
+#include"Weapon.h"
 
 
 class Player
@@ -13,13 +14,15 @@ public:
 	sf::Clock clock;
 	float dt;
 
+	Weapon* sword;
+
 	void initVariables();
 
 	Player();
 	~Player();
 
 	//Functions
-	void update();
+	void update(const sf::Vector2f mouse_pos_view);
 	void updateInputs();
 	void render(sf::RenderWindow* target);
 

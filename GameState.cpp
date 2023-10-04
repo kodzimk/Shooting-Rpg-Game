@@ -13,7 +13,9 @@ GameState::~GameState()
 
 void GameState::update(std::stack<State*>& states)
 {
-	this->player->update();
+	this->mousePosView = sf::Vector2f(sf::Mouse::getPosition(*window));
+
+	this->player->update(this->mousePosView);
 }
 
 void GameState::render()

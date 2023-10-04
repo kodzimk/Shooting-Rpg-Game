@@ -8,7 +8,7 @@ class GameState:public State
 public:
 	//Variables
 	Player* player;
-
+	sf::Vector2f mousePosView;
 
 	GameState();
 	~GameState();
