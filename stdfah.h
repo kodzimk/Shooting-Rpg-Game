@@ -4,6 +4,7 @@
 #include<SFML/Main.hpp>
 #include<SFML/Window.hpp>
 
+#include<iostream>
 #include<vector>
 #include<map>
 #include<string>
