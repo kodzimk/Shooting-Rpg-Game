@@ -12,6 +12,8 @@ public:
 	float animationTimer;
 	int currentAnimation;
 	sf::Clock clock;
+	float keyTime;
+	float keyMaxTime;
 	float dt;
 
 	Weapon* sword;
@@ -22,11 +24,13 @@ public:
 	~Player();
 
 	//Functions
-	void update(const sf::Vector2f mouse_pos_view);
-	void updateInputs();
+	void update(const sf::Vector2f mouse_pos_view, const bool isPause);
+	void updateInputs(const bool isPause);
 	void render(sf::RenderWindow* target);
 
 	const sf::Vector2f getPosition();
+	void updateKeytime();
+	const bool getKeytime();
 	void setPosition(sf::Vector2f pos);
 };
 

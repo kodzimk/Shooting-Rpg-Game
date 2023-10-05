@@ -9,7 +9,6 @@ public:
 
 	Bullet(float rot,float x, float y)
 	{
-		rot += 3;
 		texture.loadFromFile("res/Images/Player/Bullet.png");
 
 		this->sprite.setTexture(this->texture);

@@ -19,6 +19,9 @@
     <Filter Include="Enitty">
       <UniqueIdentifier>{d40f68a4-c276-4f1f-9370-0b22fdf5b22c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{11c85451-53ff-4463-b0ae-548677ce9535}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +48,9 @@
     <ClCompile Include="Weapon.cpp">
       <Filter>Enitty</Filter>
     </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -67,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Enitty</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

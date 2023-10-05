@@ -37,7 +37,6 @@ void Weapon::update(const sf::Vector2f mouse_pos_view, const sf::Vector2f center
 
 	this->sprite.setRotation(deg);
 
-	std::cout << this->sprite.getRotation() << "\n";
 }
 
 void Weapon::render(sf::RenderWindow* window,float time)
