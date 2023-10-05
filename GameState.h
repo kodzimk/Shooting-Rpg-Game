@@ -2,6 +2,7 @@
 #include"State.h"
 #include"stdfah.h"
 #include"Player.h"
+#include"TileMap.h"
 #include"PauseMenu.h"
 
 class PauseMenu;
@@ -14,6 +15,7 @@ public:
 	sf::Vector2f mousePosView;
 	bool isPause;
 	PauseMenu* pauseMenu;
+	TileMap* map;
 
 
 	GameState();

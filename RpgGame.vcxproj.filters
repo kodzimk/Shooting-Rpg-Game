@@ -51,6 +51,12 @@
     <ClCompile Include="PauseMenu.cpp">
       <Filter>Gui</Filter>
     </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Filler.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -75,6 +81,12 @@
       <Filter>Enitty</Filter>
     </ClInclude>
     <ClInclude Include="PauseMenu.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Filler.h">
       <Filter>Gui</Filter>
     </ClInclude>
   </ItemGroup>

@@ -42,11 +42,9 @@ void PauseMenu::updateInputs(sf::Vector2f pos,std::stack<State*>& states,bool is
 		
 		while (!states.empty()) {
 			states.pop();
-			std::cout << "Kkkkk" << "\n";
 		}
 		states.emplace();
 		window->close();
 		states.push(new MainMenuState());
-		std::cout << "Size: " << states.size();
 	}
 }

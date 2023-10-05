@@ -5,12 +5,14 @@ GameState::GameState()
 	this->window = new sf::RenderWindow(sf::VideoMode(960, 640), "game");
 	this->player = new Player();
 	this->pauseMenu = new PauseMenu();
+	this->map = new TileMap();
 }
 
 GameState::~GameState()
 {
 	delete this->player;
 	delete this->pauseMenu;
+	delete this->map;
 }
 
 void GameState::update(std::stack<State*>& states)
@@ -19,7 +21,7 @@ void GameState::update(std::stack<State*>& states)
 
 	this->updateInputs(states);
 
-	this->player->update(this->mousePosView,this->getPause());
+	this->player->update(this->mousePosView,this->getPause(),this->map->isCollide(this->player));
 }
 
 const bool GameState::getPause()
@@ -50,6 +52,7 @@ void GameState::render()
 		this->pauseMenu->render(window);
 	}
 
+	this->map->render(window);
 	this->player->render(this->window);
 	window->display();
 }
