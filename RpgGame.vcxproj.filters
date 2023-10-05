@@ -57,6 +57,9 @@
     <ClCompile Include="Filler.cpp">
       <Filter>Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enitty</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Filler.h">
       <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enitty</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

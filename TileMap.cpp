@@ -5,7 +5,6 @@ void TileMap::initTileMap()
 	this->textureSheet.loadFromFile("res/Images/Tiles/tilesheet3.png");
 	this->itemSheet.loadFromFile("res/Images/Player/stuff.png");
 
-
 	for (int y = 0; y < 10; y++)
 	{
 		for (int x = 0; x < 15; x++) {
