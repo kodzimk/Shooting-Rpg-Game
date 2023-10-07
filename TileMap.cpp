@@ -11,11 +11,13 @@ void TileMap::initTileMap()
 			if ((y == 3&&x==8)||(y==9&&x==5)||(y==6&&x==9)|| (y == 7 && x == 10) || (y == 8 && x == 13) || (y == 4 && x == 10))
 			{
 				this->tiles.push_back(new tile(sf::Vector2f(x * 32, y * 32), 32, 32, 32, 32, false, this->itemSheet, true, 0));
+				this->tiles.at(this->tiles.size() - 1)->sprite.setScale(1.5f, 1.5f);
 			}
 
 			if ((y == 7 && x == 9) || (y == 3 && x == 12) || (y == 9 && x == 14))
 			{
 				this->tiles.push_back(new tile(sf::Vector2f(x * 32, y * 32), 0, 0, 32, 32, false, this->itemSheet, true, 1));
+				this->tiles.at(this->tiles.size() - 1)->sprite.setScale(1.5f, 1.5f);
 			}
 
 			if (this->map[y][x] == '0')
@@ -91,14 +93,57 @@ const bool TileMap::isCollide(Player* rect)
 				}
 				else if (this->tiles[i]->type == 1)
 				{
-					if (rect->hp + 5 < 100)
+					int a = rand() % 1500;
+					int b = 10000 - rect->hp;
+					int c = a - b;
+					if (rect->hp + a <= 10000)
 					{
-						rect->hp += 5;
-						rect->filler.innerText.setString(std::to_string(rect->hp));
+						rect->hp += a;
+						rect->filler.innerText.setString(std::to_string(rect->hp/100));
+						this->tiles[i]->sprite.setScale(0, 0);
+					}
+					else
+					{
+						rect->hp += c;
+						rect->filler.innerText.setString(std::to_string(rect->hp / 100));
 						this->tiles[i]->sprite.setScale(0, 0);
 					}
 				}
 				
+			}
+		}
+	}
+	return false;
+}
+
+const bool TileMap::isCollide(Enemy* rect)
+{
+
+	for (size_t i = 0; i < this->tiles.size(); i++)
+	{
+		if (tiles[i]->collision)
+		{
+			if (this->tiles[i]->sprite.getGlobalBounds().intersects(rect->getGlobalBounds()))
+			{
+				if (rect->getPosition().y > 500)
+				{
+					rect->sprite.move(0, -0.1);
+				}
+				if (rect->getPosition().y < 150)
+				{
+					rect->sprite.move(0, 0.1);
+				}
+
+				if (rect->getPosition().x > 800)
+				{
+					rect->sprite.move(-0.05, 0);
+				}
+
+				if (rect->getPosition().x < 150)
+				{
+					rect->sprite.move(0.05, 0);
+				}
+				return true;
 			}
 		}
 	}

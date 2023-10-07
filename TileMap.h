@@ -1,5 +1,6 @@
 #pragma once
 #include"stdfah.h"
+#include"Enemy.h"
 #include"Player.h"
 
 class tile {
@@ -48,6 +49,7 @@ public:
 	TileMap();
 	~TileMap();
 
+	const bool isCollide(Enemy* rect);
 	const bool isCollide(Player* rect);
 	void render(sf::RenderWindow* window);
 };

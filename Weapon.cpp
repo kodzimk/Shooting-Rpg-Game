@@ -5,7 +5,7 @@ Weapon::Weapon()
 	this->texture.loadFromFile("res/Images/Player/Weapon.png");
 
 	this->sprite.setTexture(this->texture);
-	this->sprite.setScale(0.3, 0.3);
+	this->sprite.setScale(0.2, 0.2);
 }
 
 Weapon::~Weapon()

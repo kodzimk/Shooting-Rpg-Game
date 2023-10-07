@@ -10,21 +10,19 @@ public:
 	Bullet(float rot,float x, float y)
 	{
 		texture.loadFromFile("res/Images/Player/Bullet.png");
-
 		this->sprite.setTexture(this->texture);
 		this->sprite.setTextureRect(sf::IntRect(500,0,50,70));
-
+		this->sprite.setScale(0.3, 0.3);
+	
 		this->x = cos(rot);
 		this->y = sin(rot);
 
 		this->sprite.setPosition(x , y);
-
-
 	}
 
 	void render(sf::RenderWindow* window,float time)
 	{
-		this->sprite.move(x ,y);
+		this->sprite.move(x,y);
 		window->draw(this->sprite);
 	}
 

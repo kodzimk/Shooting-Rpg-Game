@@ -6,7 +6,7 @@ void Player::initVariables()
 	this->currentAnimation = 0;
 	this->dt = 0.f;
 	this->keyMaxTime = 10.f;
-	this->hp = 100;
+	this->hp = 10000;
 	this->keyTime = 0.f;
 	this->patronCount = 50;
 }
@@ -97,6 +97,7 @@ void Player::updateInputs(const bool isPause,bool isCan)
 			this->patronCount -= 1;
 			std::string s = "P:" + std::to_string(this->patronCount);
 			this->filler.backText.setString(s);
+
 			this->sword->bullets.push_back(new Bullet(this->sword->getRotaion(), this->sword->getPosition().x, this->sword->getPosition().y));
 		}
 	}

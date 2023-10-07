@@ -4,6 +4,7 @@
 #include"Player.h"
 #include"TileMap.h"
 #include"PauseMenu.h"
+#include"Enemy.h"
 
 class PauseMenu;
 
@@ -16,6 +17,7 @@ public:
 	bool isPause;
 	PauseMenu* pauseMenu;
 	TileMap* map;
+	Enemy* enemy;
 
 
 	GameState();
