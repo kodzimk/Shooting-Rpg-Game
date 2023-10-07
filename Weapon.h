@@ -1,5 +1,6 @@
 #pragma once
 #include"stdfah.h"
+#include"Enemy.h"
 
 class Bullet {
 public:
@@ -25,8 +26,10 @@ public:
 		this->sprite.move(x,y);
 		window->draw(this->sprite);
 	}
-
-
+	const sf::FloatRect getGloablBounds()
+	{
+		return this->sprite.getGlobalBounds();
+	}
 };
 
 class Weapon

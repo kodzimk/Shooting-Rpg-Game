@@ -3,6 +3,8 @@
 #include"Weapon.h"
 #include"Filler.h"
 
+class Weapon;
+class Filler;
 
 class Player
 {

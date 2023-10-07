@@ -24,7 +24,7 @@ void GameState::update(std::stack<State*>& states)
 	this->updateInputs(states);
 
 	this->player->update(this->mousePosView,this->getPause(),this->map->isCollide(this->player));
-	this->enemy->update(this->player->dt, this->isPause, this->map->isCollide(this->enemy), this->player->getPosition(),*this->player);
+	this->enemy->update(this->player->dt, this->isPause, this->map->isCollide(this->enemy), this->player->getPosition(),*this->player,&this->player->sword->bullets);
 }
 
 const bool GameState::getPause()

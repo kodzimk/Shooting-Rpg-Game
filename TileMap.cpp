@@ -96,6 +96,7 @@ const bool TileMap::isCollide(Player* rect)
 					int a = rand() % 1500;
 					int b = 10000 - rect->hp;
 					int c = a - b;
+
 					if (rect->hp + a <= 10000)
 					{
 						rect->hp += a;

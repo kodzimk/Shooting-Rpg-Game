@@ -3,23 +3,30 @@
 Enemy::Enemy()
 {
 	this->animationTimer = 0.f;
+
 	this->texture.loadFromFile("res/Images/Enemy/ZOMBIE_SHEET.png");
 	this->sprite.setTexture(this->texture);
 	this->sprite.setTextureRect(sf::IntRect(90, 0, 25, 48));
 	this->sprite.setPosition(500, 500);
 	this->sprite.setScale(1.5, 1.2);
+
+	this->font.loadFromFile("res/Fonts/Dosis-Light.ttf");
+	this->hpText.setFont(this->font);
+	this->hpText.setCharacterSize(25);
+
+	this->hp = 20;
 }
 
 Enemy::~Enemy()
 {
 }
 
-void Enemy::update(const float& dt, bool isPause, bool isCan,sf::Vector2f pos,Player& hp)
+void Enemy::update(const float& dt, bool isPause, bool isCan,sf::Vector2f pos,Player& hp,std::vector<Bullet*>* bullets)
 {
 	int x = static_cast<int>(pos.x / 64);
 	int y = static_cast<int>(pos.y / 64);
 
-	
+	this->collide(bullets);
 
 	int x1 = static_cast<int>(this->sprite.getPosition().x / 64);
 	int y1= static_cast<int>(this->sprite.getPosition().y/64);
@@ -44,7 +51,11 @@ void Enemy::update(const float& dt, bool isPause, bool isCan,sf::Vector2f pos,Pl
 
 void Enemy::render(sf::RenderWindow* window)
 {
+	this->hpText.setString(std::to_string(this->hp));
+	this->hpText.setPosition(this->sprite.getPosition().x + 10,this->sprite.getPosition().y-20);
+
 	window->draw(this->sprite);
+	window->draw(this->hpText);
 }
 
 void Enemy::updateAnimation(const float& dt,bool isPause,bool isCan,STATE state)
@@ -107,4 +118,19 @@ void Enemy::takeDamage(Player& hp)
 
 	hp.filler.innerText.setString(std::to_string(hp.hp/100));
 	hp.filler.innerShape.setSize(sf::Vector2f((hp.hp/100) * 1.5f, 40.f));
+}
+
+void Enemy::collide(std::vector<Bullet*>* bullets)
+{
+	auto iter = bullets->begin();
+	for (size_t i = 0; i < bullets->size(); i++,iter++)
+	{
+		if (this->sprite.getGlobalBounds().intersects(bullets->at(i)->getGloablBounds()))
+		{
+			bullets->erase(iter);
+			int a = rand() % 5;
+			this->hp -= a;
+			
+		}
+	}
 }
