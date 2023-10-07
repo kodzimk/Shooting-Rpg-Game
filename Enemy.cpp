@@ -2,13 +2,24 @@
 
 Enemy::Enemy()
 {
+	int y, x;
+
+	for (int i = 0; i < 100000; i++)
+	{
+		y = rand() % 9;
+		x = rand() % 14;
+		if (x > 1 && y > 1)
+			break;
+	}
+
 	this->animationTimer = 0.f;
 
 	this->texture.loadFromFile("res/Images/Enemy/ZOMBIE_SHEET.png");
 	this->sprite.setTexture(this->texture);
 	this->sprite.setTextureRect(sf::IntRect(90, 0, 25, 48));
-	this->sprite.setPosition(500, 500);
+	//this->sprite.setPosition(500, 500);
 	this->sprite.setScale(1.5, 1.2);
+	this->sprite.setPosition(x*64,64*y);
 
 	this->font.loadFromFile("res/Fonts/Dosis-Light.ttf");
 	this->hpText.setFont(this->font);
@@ -23,6 +34,8 @@ Enemy::~Enemy()
 
 void Enemy::update(const float& dt, bool isPause, bool isCan,sf::Vector2f pos,Player& hp,std::vector<Bullet*>* bullets)
 {
+	if (this->sprite.getScale().x != 0)
+	{
 	int x = static_cast<int>(pos.x / 64);
 	int y = static_cast<int>(pos.y / 64);
 
@@ -31,22 +44,23 @@ void Enemy::update(const float& dt, bool isPause, bool isCan,sf::Vector2f pos,Pl
 	int x1 = static_cast<int>(this->sprite.getPosition().x / 64);
 	int y1= static_cast<int>(this->sprite.getPosition().y/64);
 
-
-	if (x1 == x1 && y1 == y)
-	{
-		this->takeDamage(hp);
-		this->updateAnimation(dt, isPause, isCan, STATE::IDLE);
+	
+		if (x == x1 && y1 == y)
+		{
+			this->takeDamage(hp);
+			this->updateAnimation(dt, isPause, isCan, STATE::IDLE);
+		}
+		else if (x < x1)
+		{
+			this->updateAnimation(dt, isPause, isCan, STATE::WALK_LEFT);
+		}
+		else if (x > x1)
+			this->updateAnimation(dt, isPause, isCan, STATE::WALK_RIGHT);
+		else  if (y > y1)
+			this->updateAnimation(dt, isPause, isCan, STATE::WALK_DOWN);
+		else if (y < y1)
+			this->updateAnimation(dt, isPause, isCan, STATE::WALK_UP);
 	}
-	else if (x < x1)
-	{
-		this->updateAnimation(dt, isPause, isCan, STATE::WALK_LEFT);
-	}
-	 else if (x>x1)
-		this->updateAnimation(dt, isPause, isCan, STATE::WALK_RIGHT);
-	 else  if (y>y1)
-		this->updateAnimation(dt, isPause, isCan, STATE::WALK_DOWN);
-	 else if (y<y1)
-		this->updateAnimation(dt, isPause, isCan, STATE::WALK_UP);
 }
 
 void Enemy::render(sf::RenderWindow* window)
@@ -113,7 +127,6 @@ const sf::FloatRect Enemy::getGlobalBounds()
 
 void Enemy::takeDamage(Player& hp)
 {
-
 	hp.hp -= 1;
 
 	hp.filler.innerText.setString(std::to_string(hp.hp/100));
@@ -123,13 +136,19 @@ void Enemy::takeDamage(Player& hp)
 void Enemy::collide(std::vector<Bullet*>* bullets)
 {
 	auto iter = bullets->begin();
-	for (size_t i = 0; i < bullets->size(); i++,iter++)
+	for (size_t i = 0; i < bullets->size(); i++)
 	{
 		if (this->sprite.getGlobalBounds().intersects(bullets->at(i)->getGloablBounds()))
 		{
+			(iter + i);
 			bullets->erase(iter);
 			int a = rand() % 5;
 			this->hp -= a;
+			if (this->hp < 0)
+			{
+				this->sprite.setScale(0, 0);
+				this->hpText.setScale(0, 0);
+			}
 			
 		}
 	}

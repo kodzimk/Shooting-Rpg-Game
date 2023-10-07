@@ -95,17 +95,16 @@ const bool TileMap::isCollide(Player* rect)
 				{
 					int a = rand() % 1500;
 					int b = 10000 - rect->hp;
-					int c = a - b;
 
-					if (rect->hp + a <= 10000)
+					if (rect->hp + a < 10000)
 					{
 						rect->hp += a;
 						rect->filler.innerText.setString(std::to_string(rect->hp/100));
 						this->tiles[i]->sprite.setScale(0, 0);
 					}
-					else
+					else if(rect->hp !=10000)
 					{
-						rect->hp += c;
+						rect->hp += b;
 						rect->filler.innerText.setString(std::to_string(rect->hp / 100));
 						this->tiles[i]->sprite.setScale(0, 0);
 					}

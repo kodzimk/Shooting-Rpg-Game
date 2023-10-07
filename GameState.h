@@ -17,7 +17,14 @@ public:
 	bool isPause;
 	PauseMenu* pauseMenu;
 	TileMap* map;
-	Enemy* enemy;
+	std::vector<Enemy*> enemies;
+	float time;
+	sf::Clock clock;
+	float timer;
+	sf::Font font;
+	sf::Text timerText;
+	sf::Clock clock1;
+	float t;
 
 
 	GameState();
