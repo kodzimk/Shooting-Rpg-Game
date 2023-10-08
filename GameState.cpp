@@ -35,11 +35,12 @@ void GameState::update(std::stack<State*>& states)
 	this->mousePosView = sf::Vector2f(sf::Mouse::getPosition(*window));
 
 	this->updateInputs(states);
+	this->player->update(this->mousePosView, this->getPause(), this->map->isCollide(this->player));
 
 	if (!isPause)
 	{
 		this->timerText.setString(std::to_string(int(abs(this->timer))));
-		this->player->update(this->mousePosView, this->getPause(), this->map->isCollide(this->player));
+
 		this->time = this->clock.getElapsedTime().asSeconds();
 		this->t = this->clock1.getElapsedTime().asSeconds();
 
@@ -53,7 +54,7 @@ void GameState::update(std::stack<State*>& states)
 		}
 		this->clock1.restart();
 
-		if (this->player->hp <= 0||this->timer <=0)
+		if (this->player->hp <= 0||this->timer <= 0)
 		{
 			while (states.size() > 0)
 			{
@@ -76,13 +77,11 @@ const bool GameState::getPause()
 
 void GameState::updateInputs(std::stack<State*>& states)
 {
-
 	if(this->isPause)
 	this->pauseMenu->updateInputs(this->mousePosView,states,this->player->getKeytime(),this->window);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && this->player->getKeytime())
 	{
-		
 		if (this->isPause)
 			this->isPause = false;
 		else
@@ -93,10 +92,6 @@ void GameState::updateInputs(std::stack<State*>& states)
 void GameState::render()
 {
 	window->clear();
-	if (this->isPause)
-	{
-		this->pauseMenu->render(window);
-	}
 
 
 	this->map->render(window);
@@ -108,6 +103,10 @@ void GameState::render()
 		this->enemies[i]->render(window);
 	}
 	window->draw(this->timerText);
+	if (this->isPause)
+	{
+		this->pauseMenu->render(window);
+	}
 
 	window->display();
 }

@@ -37,7 +37,6 @@ void Player::update(const sf::Vector2f mouse_pos_view, const bool isPause,bool i
 {
 	this->dt = this->clock.restart().asSeconds();
 
-
 	this->updateKeytime();
 
 	if (!isPause)

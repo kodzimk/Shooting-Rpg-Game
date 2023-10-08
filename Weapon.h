@@ -14,11 +14,13 @@ public:
 		this->sprite.setTexture(this->texture);
 		this->sprite.setTextureRect(sf::IntRect(500,0,50,70));
 		this->sprite.setScale(0.3, 0.3);
-	
-		this->x = cos(rot);
-		this->y = sin(rot);
+		rot = rot * 3.14 / 180;
+
+		this->x = std::cos(rot);
+		this->y = std::sin(rot);
 
 		this->sprite.setPosition(x , y);
+		std::cout << this->x << " " << this->y<<"  "<<rot << "\n";
 	}
 
 	void render(sf::RenderWindow* window,float time)
